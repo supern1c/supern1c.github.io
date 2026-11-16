@@ -1,213 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nico Ari Novriantoro | Flutter &amp; Laravel Developer</title>
-<meta name="description" content="Flutter and Laravel developer in Bandung, Indonesia. HR SaaS apps, digital signage and e-commerce platforms.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#eef0f2; --bg2:#e1e5e9; --ink:#14171b; --mute:#4a525c; --line:#c3cad1;
-  --accent:#7a5800; --signal:#f2c230; --on-signal:#14171b; --sky:#ccd3da; --glow:rgba(242,194,48,.45);
-  --head:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
-  --body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --bg:#0e1013; --bg2:#171b20; --ink:#eceae4; --mute:#9aa3ad; --line:#2a3037;
-    --accent:#f2c230; --sky:#171b20; --glow:rgba(242,194,48,.28);
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#0e1013; --bg2:#171b20; --ink:#eceae4; --mute:#9aa3ad; --line:#2a3037;
-  --accent:#f2c230; --sky:#171b20; --glow:rgba(242,194,48,.28);
-}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-*,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
-.wrap{max-width:920px;margin:0 auto;padding:0 22px}
-
-.hero{position:relative;min-height:92svh;display:flex;flex-direction:column;overflow:hidden;border-bottom:1px solid var(--line)}
-.signal{position:absolute;right:-60px;top:6%;width:min(420px,70vw);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,color-mix(in srgb,var(--signal) 55%,transparent) 0,var(--glow) 40%,transparent 72%);opacity:0;animation:on 1.4s .2s ease-out forwards}
-.beam{position:absolute;right:calc(min(420px,70vw)/2 - 60px);top:calc(6% + min(420px,70vw)/2);bottom:0;width:min(420px,70vw);transform:translateX(50%);
-  background:linear-gradient(to top,var(--glow),transparent 90%);clip-path:polygon(0 0,100% 0,54% 100%,46% 100%);opacity:0;animation:on 1.8s .5s ease-out forwards}
-.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px;fill:var(--sky)}
-.nav{position:relative;z-index:2;display:flex;gap:22px;justify-content:flex-end;padding:20px 0;font-size:.95rem}
-.nav a{text-decoration:none;color:var(--mute);padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
-.nav a:hover{color:var(--ink);border-color:var(--signal)}
-.hero-body{position:relative;z-index:2;margin:auto 0;padding:48px 0 190px}
-h1{font:800 clamp(3.1rem,11.5vw,6.6rem)/.92 var(--head);letter-spacing:.005em;margin:0 0 18px;text-transform:uppercase;max-width:9ch}
-.role{font:700 clamp(1.3rem,4vw,1.9rem)/1.2 var(--head);color:var(--accent);margin:0 0 16px;letter-spacing:.02em}
-.lede{max-width:52ch;color:var(--mute);margin:0 0 28px;font-size:1.08rem}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:12px 22px;border:1.5px solid var(--ink);text-decoration:none;font-weight:600;border-radius:3px;transition:background .2s,color .2s,border-color .2s}
-.btn.primary{background:var(--signal);border-color:var(--signal);color:var(--on-signal)}
-.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-.btn.ghost:hover{border-color:var(--signal);background:var(--bg2)}
-.fade{opacity:0;animation:rise .9s .9s ease-out forwards}
-
-section{padding:84px 0 12px}
-h2{font:800 clamp(2.2rem,6vw,3.2rem)/1 var(--head);margin:0 0 8px;letter-spacing:.01em;text-transform:uppercase}
-.sub{color:var(--mute);margin:0 0 36px;max-width:56ch}
-
-.case{position:relative;padding:0 0 34px 26px;border-left:2px solid var(--line)}
-.case::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px var(--bg)}
-.case h3{margin:0;font:700 1.55rem/1.15 var(--head);letter-spacing:.02em}
-.case .meta{color:var(--mute);font-size:.92rem;margin:2px 0 10px}
-.case ul{margin:0;padding-left:18px}
-.case li{margin:0 0 6px;max-width:68ch}
-
-.proj{display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;border-top:1px solid var(--line)}
-.proj:last-child{border-bottom:1px solid var(--line)}
-.proj h3{margin:0;font:700 1.5rem/1.15 var(--head);letter-spacing:.02em}
-.proj p{margin:0;max-width:64ch;color:var(--mute)}
-.stack{font-size:.88rem;color:var(--accent);font-weight:500}
-.proj a.title{text-decoration:none;border-bottom:2px solid var(--signal)}
-@media(min-width:720px){.proj{grid-template-columns:260px 1fr;gap:28px}}
-
-dl.belt{margin:0;display:grid;gap:0}
-.belt div{display:grid;gap:4px;padding:16px 0;border-top:1px solid var(--line)}
-.belt div:last-child{border-bottom:1px solid var(--line)}
-.belt dt{font:700 1.3rem/1.2 var(--head);letter-spacing:.03em}
-.belt dd{margin:0;color:var(--mute)}
-@media(min-width:720px){.belt div{grid-template-columns:260px 1fr;gap:28px}}
-
-.contact{background:var(--bg2);margin-top:84px;padding:72px 0 64px;border-top:1px solid var(--line)}
-.contact section{padding:0}
-.mail{display:inline-block;font:800 clamp(1.4rem,5.4vw,2.6rem)/1.1 var(--head);letter-spacing:.02em;text-decoration:none;border-bottom:3px solid var(--signal);margin:6px 0 22px;word-break:break-all}
-.contact p{margin:0 0 10px;color:var(--mute)}
-footer{padding:22px 0 30px;font-size:.88rem;color:var(--mute);background:var(--bg2)}
-
-@keyframes on{to{opacity:1}}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){
-  .signal,.beam,.fade{animation:none;opacity:1;transform:none}
-  html{scroll-behavior:auto}
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Nico Ari Novriantoro | Flutter &amp; Laravel Developer</title>
+    <meta name="description"
+        content="Flutter and Laravel developer in Bandung, Indonesia. HR SaaS apps, digital signage and e-commerce platforms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
+    <header class="hero">
+        <div class="signal" aria-hidden="true"></div>
+        <div class="beam" aria-hidden="true"></div>
+        <svg class="skyline" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <path
+                d="M0 150V92h40V70h28v22h30V40h34v-14h14v14h26v52h34V80h40V58h30v34h28V30h8V10h8v20h8v62h34V74h46V50h36v42h30V84h40V62h26v30h38V36h30v-16h10v16h22v56h34V78h44V54h34v38h30V66h42V86h36V46h28v46h30V70h38V94h40V60h30v32h34V40h8V22h8v18h8v52h36V80h40V64h32v28h40V150Z" />
+        </svg>
+        <div class="wrap hero-wrap">
+            <nav class="nav" aria-label="Sections">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="hero-body">
+                <h1>Nico Ari Novriantoro</h1>
+                <p class="role fade">Flutter &amp; Laravel Developer</p>
+                <p class="lede fade">I turn everyday business workflows into reliable software: tools that help teams
+                    manage
+                    their people, screens that keep travelers informed in real time, and systems that stay in sync with
+                    the
+                    marketplaces behind them. I care about clean architecture, steady releases and apps that hold up in
+                    production.</p>
+                <div class="btns fade">
+                    <a class="btn primary" href="mailto:novriantoro.nico@gmail.com">Email me</a>
+                    <a class="btn ghost" href="https://github.com/supern1c" rel="noopener">View GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<header class="hero">
-  <div class="signal" aria-hidden="true"></div>
-  <div class="beam" aria-hidden="true"></div>
-  <svg class="skyline" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <path d="M0 150V92h40V70h28v22h30V40h34v-14h14v14h26v52h34V80h40V58h30v34h28V30h8V10h8v20h8v62h34V74h46V50h36v42h30V84h40V62h26v30h38V36h30v-16h10v16h22v56h34V78h44V54h34v38h30V66h42V86h36V46h28v46h30V70h38V94h40V60h30v32h34V40h8V22h8v18h8v52h36V80h40V64h32v28h40V150Z"/>
-  </svg>
-  <div class="wrap" style="position:relative;z-index:2;display:flex;flex-direction:column;flex:1;width:100%">
-    <nav class="nav" aria-label="Sections">
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="hero-body">
-      <h1>Nico Ari Novriantoro</h1>
-      <p class="role fade">Flutter &amp; Laravel Developer</p>
-      <p class="lede fade">I turn everyday business workflows into reliable software: tools that help teams manage their people, screens that keep travelers informed in real time, and systems that stay in sync with the marketplaces behind them. I care about clean architecture, steady releases and apps that hold up in production.</p>
-      <div class="btns fade">
-        <a class="btn primary" href="mailto:novriantoro.nico@gmail.com">Email me</a>
-        <a class="btn ghost" href="https://github.com/supern1c" rel="noopener">View GitHub</a>
-      </div>
+    <main class="wrap">
+        <section id="case-file">
+            <h2>The Batcave</h2>
+            <p class="sub">Where I’ve worked, newest first.</p>
+
+            <article class="case">
+                <h3>Mobile &amp; Web Developer, PT. Pentacode Digital</h3>
+                <p class="meta">December 2021 to present</p>
+                <ul>
+                    <li>Build and maintain HiRevo, a SaaS HR management app, in Flutter with Riverpod.</li>
+                    <li>Developed Passport, an HR management mobile app with REST API integration and Firebase
+                        Crashlytics
+                        monitoring.</li>
+                    <li>Built Flutter digital signage apps for KAI train station information systems.</li>
+                    <li>Maintain an omnichannel sales web app with automated, real-time marketplace data sync.</li>
+                </ul>
+            </article>
+
+            <article class="case">
+                <h3>Web Developer, Authentic Guards Technology</h3>
+                <p class="meta">July 2020 to November 2021</p>
+                <ul>
+                    <li>Developed and maintained Laravel web applications, including BNPT TV, KADIN Jawa Barat and
+                        Inspira TV.
+                    </li>
+                    <li>Connected backend and frontend to deliver scalable websites.</li>
+                </ul>
+            </article>
+
+            <article class="case">
+                <h3>Frontend Web Developer Intern, PT. Adhivasindo</h3>
+                <p class="meta">July 2019 to September 2019</p>
+                <ul>
+                    <li>Built responsive website templates for corporate and educational clients, working with the
+                        design team.
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="projects">
+            <h2>Case files</h2>
+            <p class="sub">Products I’ve built and the code I keep public.</p>
+
+            <div class="proj">
+                <div>
+                    <h3>HiRevo</h3><span class="stack">Flutter · Riverpod · REST</span>
+                </div>
+                <p>A SaaS HR management platform that builds on Passport. Built at PT. Pentacode Digital.</p>
+            </div>
+            <div class="proj">
+                <div>
+                    <h3>Passport</h3><span class="stack">Flutter · REST · Crashlytics</span>
+                </div>
+                <p>An HR management mobile app for employees and teams. Built at PT. Pentacode Digital.</p>
+            </div>
+            <div class="proj">
+                <div>
+                    <h3>KAI digital signage</h3><span class="stack">Flutter</span>
+                </div>
+                <p>Information display apps for KAI train stations. Built at PT. Pentacode Digital.</p>
+            </div>
+            <div class="proj">
+                <div>
+                    <h3>Omnichannel sales app</h3><span class="stack">Laravel · MySQL</span>
+                </div>
+                <p>A web app for managing online sales, with automated real-time data sync from marketplaces. Built at
+                    PT.
+                    Pentacode Digital.</p>
+            </div>
+            <div class="proj">
+                <div>
+                    <h3><a class="title" href="https://github.com/supern1c/flutter_mvvm_riverpod"
+                            rel="noopener">flutter_mvvm_riverpod</a></h3><span class="stack">Flutter · Dart ·
+                        Riverpod</span>
+                </div>
+                <p>An open-source Flutter boilerplate with MVVM architecture and Riverpod state management.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Utility belt</h2>
+            <p class="sub">The tools I reach for.</p>
+            <dl class="belt">
+                <div>
+                    <dt>Mobile</dt>
+                    <dd>Flutter, Dart, Riverpod, REST API integration</dd>
+                </div>
+                <div>
+                    <dt>Frontend</dt>
+                    <dd>HTML/CSS, JavaScript, Vue.js</dd>
+                </div>
+                <div>
+                    <dt>Backend</dt>
+                    <dd>PHP, Laravel, MySQL</dd>
+                </div>
+                <div>
+                    <dt>Tools</dt>
+                    <dd>Git, Firebase Crashlytics</dd>
+                </div>
+            </dl>
+        </section>
+    </main>
+
+    <div class="contact" id="contact">
+        <div class="wrap">
+            <section>
+                <h2>Bat-Signal</h2>
+                <p>Open to Flutter and mobile roles, plus frontend and backend. Based in Bandung, available remote.</p>
+                <a class="mail" href="mailto:novriantoro.nico@gmail.com">novriantoro.nico@gmail.com</a>
+                <p><a href="https://github.com/supern1c" rel="noopener">github.com/supern1c</a></p>
+            </section>
+        </div>
     </div>
-  </div>
-</header>
 
-<main class="wrap">
-
-  <section id="experience">
-    <h2>Case files</h2>
-    <p class="sub">Where I’ve worked, newest first.</p>
-
-    <article class="case">
-      <h3>Mobile &amp; Web Developer, PT. Pentacode Digital</h3>
-      <p class="meta">December 2021 to present</p>
-      <ul>
-        <li>Build and maintain HiRevo, a SaaS HR management app, in Flutter with Riverpod.</li>
-        <li>Developed Passport, an HR management mobile app with REST API integration and Firebase Crashlytics monitoring.</li>
-        <li>Built Flutter digital signage apps for KAI train station information systems.</li>
-        <li>Maintain an omnichannel sales web app with automated, real-time marketplace data sync.</li>
-      </ul>
-    </article>
-
-    <article class="case">
-      <h3>Web Developer, Authentic Guards Technology</h3>
-      <p class="meta">July 2020 to November 2021</p>
-      <ul>
-        <li>Developed and maintained Laravel web applications, including BNPT TV, KADIN Jawa Barat and Inspira TV.</li>
-        <li>Connected backend and frontend to deliver scalable websites.</li>
-      </ul>
-    </article>
-
-    <article class="case">
-      <h3>Frontend Web Developer Intern, PT. Adhivasindo</h3>
-      <p class="meta">July 2019 to September 2019</p>
-      <ul>
-        <li>Built responsive website templates for corporate and educational clients, working with the design team.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section id="projects">
-    <h2>The Batcave</h2>
-    <p class="sub">Products I’ve built and the code I keep public.</p>
-
-    <div class="proj">
-      <div><h3>HiRevo</h3><span class="stack">Flutter · Riverpod · REST</span></div>
-      <p>A SaaS HR management platform that builds on Passport. Built at PT. Pentacode Digital.</p>
-    </div>
-    <div class="proj">
-      <div><h3>Passport</h3><span class="stack">Flutter · REST · Crashlytics</span></div>
-      <p>An HR management mobile app for employees and teams. Built at PT. Pentacode Digital.</p>
-    </div>
-    <div class="proj">
-      <div><h3>KAI digital signage</h3><span class="stack">Flutter</span></div>
-      <p>Information display apps for KAI train stations. Built at PT. Pentacode Digital.</p>
-    </div>
-    <div class="proj">
-      <div><h3>Omnichannel sales app</h3><span class="stack">Laravel · MySQL</span></div>
-      <p>A web app for managing online sales, with automated real-time data sync from marketplaces. Built at PT. Pentacode Digital.</p>
-    </div>
-    <div class="proj">
-      <div><h3><a class="title" href="https://github.com/supern1c/flutter_mvvm_riverpod" rel="noopener">flutter_mvvm_riverpod</a></h3><span class="stack">Flutter · Dart · Riverpod</span></div>
-      <p>An open-source Flutter boilerplate with MVVM architecture and Riverpod state management.</p>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Utility belt</h2>
-    <p class="sub">The tools I reach for.</p>
-    <dl class="belt">
-      <div><dt>Mobile</dt><dd>Flutter, Dart, Riverpod, REST API integration</dd></div>
-      <div><dt>Frontend</dt><dd>HTML/CSS, JavaScript, Vue.js</dd></div>
-      <div><dt>Backend</dt><dd>PHP, Laravel, MySQL</dd></div>
-      <div><dt>Tools</dt><dd>Git, Firebase Crashlytics</dd></div>
-    </dl>
-  </section>
-</main>
-
-<div class="contact" id="contact">
-  <div class="wrap">
-    <section>
-      <h2>Bat-Signal</h2>
-      <p>Open to Flutter and mobile roles, plus frontend and backend. Based in Bandung, available remote.</p>
-      <a class="mail" href="mailto:novriantoro.nico@gmail.com">novriantoro.nico@gmail.com</a>
-      <p><a href="https://github.com/supern1c" rel="noopener">github.com/supern1c</a></p>
-    </section>
-  </div>
-</div>
-<footer><div class="wrap">© 2026 Nico Ari Novriantoro. Bandung, Indonesia.</div></footer>
-
+    <footer>
+        <div class="wrap">© 2026 Nico Ari Novriantoro. Bandung, Indonesia.</div>
+    </footer>
 </body>
+
 </html>
